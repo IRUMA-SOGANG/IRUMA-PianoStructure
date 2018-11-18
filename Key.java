@@ -1,15 +1,21 @@
-public class Key {
-    public int sound; // 도=1, 레=2, 미=3, 파=4, 솔=5, 라=6, 시=7
-    public int octave; // 옥타브 피아노 왼->오 1~7
-    public int color; // 0=White, 1=Black
-    boolean press; // 0=안 누른거 , 1=누른거
+package com.sogang.capstone2.iruma;
 
-    public Key(int sound, int octave, int color, boolean press) {
+import android.graphics.RectF;
+
+public class Key {
+    public int sound; // 14개씩으로 끊어서 하도록 정함
+    // 도=1, 레=2, 미=3, 파=4, 솔=5, 라=6, 시=7 다음 옥타브엔 도 = 8 부터 시 = 14
+     // 옥타브 피아노 왼->오 1~7
+    public int color; // 0=White, 1=Black
+    public RectF rect;
+    Boolean down; // 0=안 누른거 , 1=누른거
+
+    public Key(int sound, int color, RectF rect) {
         this.sound = sound;
-        this.octave = octave;
         this.color = color;
-        this.press = press;
+        this.rect = rect;
     }
+
 
     public int getSound() {
         return sound;
@@ -19,13 +25,13 @@ public class Key {
         this.sound = sound;
     }
 
-    public int getOctave() {
+    /*public int getOctave() {
         return octave;
     }
 
     public void setOctave(int octave) {
         this.octave = octave;
-    }
+    }*/
 
     public int getColor() {
         return color;
@@ -35,11 +41,18 @@ public class Key {
         this.color = color;
     }
 
-    public boolean isPress() {
-        return press;
+    public Boolean getPress() {
+        return down;
     }
 
-    public void setPress(boolean press) {
-        this.press = press;
+    public void setPress(Boolean press) {
+        this.down = press;
+    }
+    public RectF getRect() {
+        return rect;
+    }
+
+    public void setRect(RectF rect) {
+        this.rect = rect;
     }
 }
