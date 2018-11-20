@@ -13,8 +13,8 @@ import java.io.InputStream;
 
 
 public class AudioSoundPlayer {
-    private SparseArray<PlayThread> threadMap = null;
-    private Context context;
+    private static SparseArray<PlayThread> threadMap = null;
+    private static Context context;
     private static final SparseArray<String> SOUND_MAP = new SparseArray<>();
     public static final int MAX_VOLUME = 100, CURRENT_VOLUME = 90;
     static {
@@ -61,7 +61,7 @@ public class AudioSoundPlayer {
     //수정
     public static void playNote(int sound, int octave){
         if ( !isNotePlaying(sound, octave)){
-            PlayThread thread = new PlayThread(sound, octave);
+            PlayThread thread = new PlayThread(sound,octave);
             thread.start();
             threadMap.put(sound+octave-1, thread);
         }
@@ -88,11 +88,11 @@ public class AudioSoundPlayer {
         return threadMap.get(note) != null;
     }*/
    //수정
-    public boolean isNotePlaying(int sound, int octave){
-        return threadMap.get(sound+octave-1) != null;
+    public static boolean isNotePlaying(int sound, int octave){
+        return threadMap.get((sound+octave)-1) != null;
     }
 
-    private class PlayThread extends Thread{
+    private static class PlayThread extends Thread{
 
         //int note;
         //수정
